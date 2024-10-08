@@ -1,4 +1,4 @@
-package pyrinstratum
+package waglaylastratum
 
 type ErrorShortCodeT string
 

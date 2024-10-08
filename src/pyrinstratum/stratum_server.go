@@ -1,4 +1,4 @@
-package pyrinstratum
+package waglaylastratum
 
 import (
 	"context"
@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/Pyrinpyi/pyrin-stratum-bride/src/gostratum"
+	"github.com/Pyrinpyi/waglayla-stratum-bride/src/gostratum"
 	"github.com/mattn/go-colorable"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -18,7 +18,7 @@ const minBlockWaitTime = 500 * time.Millisecond
 
 type BridgeConfig struct {
 	StratumPort     string        `yaml:"stratum_port"`
-	RPCServer       string        `yaml:"pyrin_address"`
+	RPCServer       string        `yaml:"waglayla_address"`
 	PromPort        string        `yaml:"prom_port"`
 	PrintStats      bool          `yaml:"print_stats"`
 	UseLogFile      bool          `yaml:"log_to_file"`
@@ -76,7 +76,7 @@ func ListenAndServe(cfg BridgeConfig) error {
 		go http.ListenAndServe(cfg.HealthCheckPort, nil)
 	}
 
-	shareHandler := newShareHandler(pyApi.pyrin)
+	shareHandler := newShareHandler(pyApi.waglayla)
 	minDiff := cfg.MinShareDiff
 	if minDiff < 1 {
 		minDiff = 1

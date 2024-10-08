@@ -24,7 +24,7 @@ At this point the flight sheet should be happy:
 ![image](https://github.com/Pyrinpyi/pyipad-stratum-bridge/assets/138370658/e9019889-dfb0-4378-91e0-513832896c65)
 
 
-Last step, you just need to edit the custom miner section with the address of the pyrin node you're mining to. This needs the full ip/port so it'll look similar to `192.168.0.12:13110` save the changes after you're finished
+Last step, you just need to edit the custom miner section with the address of the waglayla node you're mining to. This needs the full ip/port so it'll look similar to `192.168.0.12:13110` save the changes after you're finished
 ![image](https://github.com/Pyrinpyi/pyipad-stratum-bridge/assets/138370658/28c62e9e-47ed-418c-9558-dad54d417688)
 
 

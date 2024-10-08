@@ -1,4 +1,4 @@
-package pyrinstratum
+package waglaylastratum
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/Pyrinpyi/pyrin-stratum-bride/src/gostratum"
+	"github.com/Pyrinpyi/waglayla-stratum-bride/src/gostratum"
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
 )
@@ -105,11 +105,11 @@ func (c *clientListener) NewBlockAvailable(kapi *PyrinApi) {
 			if err != nil {
 				if strings.Contains(err.Error(), "Could not decode address") {
 					RecordWorkerError(client.WalletAddr, ErrInvalidAddressFmt)
-					client.Logger.Error(fmt.Sprintf("failed fetching new block template from pyrin, malformed address: %s", err))
+					client.Logger.Error(fmt.Sprintf("failed fetching new block template from waglayla, malformed address: %s", err))
 					client.Disconnect() // unrecoverable
 				} else {
 					RecordWorkerError(client.WalletAddr, ErrFailedBlockFetch)
-					client.Logger.Error(fmt.Sprintf("failed fetching new block template from pyrin: %s", err))
+					client.Logger.Error(fmt.Sprintf("failed fetching new block template from waglayla: %s", err))
 				}
 				return
 			}
@@ -175,9 +175,9 @@ func (c *clientListener) NewBlockAvailable(kapi *PyrinApi) {
 		c.lastBalanceCheck = time.Now()
 		if len(addresses) > 0 {
 			go func() {
-				balances, err := kapi.pyrin.GetBalancesByAddresses(addresses)
+				balances, err := kapi.waglayla.GetBalancesByAddresses(addresses)
 				if err != nil {
-					c.logger.Warn("failed to get balances from pyrin, prom stats will be out of date", zap.Error(err))
+					c.logger.Warn("failed to get balances from waglayla, prom stats will be out of date", zap.Error(err))
 					return
 				}
 				RecordBalances(balances)

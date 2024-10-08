@@ -2,10 +2,10 @@
 # Note `:PORT` format is needed if not specifiying a specific ip range
 stratum_port: :5555
 
-# pyrin_address: address/port of the rpc server for pyrin, typically 13110
+# waglayla_address: address/port of the rpc server for waglayla, typically 13110
 # For a list of public nodes, run `nslookup mainnet-dnsseed.daglabs-dev.com`
 # uncomment for to use a public node
-pyrin_address: localhost:13110
+waglayla_address: localhost:13110
 
 # min_share_diff: only accept shares of the specified difficulty (or higher) from
 # the miner(s).  Higher values will reduce the number of shares submitted, thereby
@@ -14,7 +14,7 @@ pyrin_address: localhost:13110
 # accurate hashrate measurements
 # min_share_diff: 4
 
-# block_wait_time: time to wait since last new block message from pyrin before
+# block_wait_time: time to wait since last new block message from waglayla before
 # manually requesting a new block
 # block_wait_time: 500ms
 

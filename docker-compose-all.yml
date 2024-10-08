@@ -2,7 +2,7 @@ volumes:
   prometheus_data: {}
 services:
   py_bridge:
-    image: pyrinpyi/pyipad-stratum-bridge:latest
+    image: waglaylapyi/pyipad-stratum-bridge:latest
     container_name: py_bridge
     restart: unless-stopped
     user: "0"
@@ -11,7 +11,7 @@ services:
       - '-stats=false'
       - '-stratum=:5555'
       - '-prom=:2114'
-      - '-pyrin=host.docker.internal:13110'
+      - '-waglayla=host.docker.internal:13110'
     ports:
       - 5555:5555
       - 2114:2114

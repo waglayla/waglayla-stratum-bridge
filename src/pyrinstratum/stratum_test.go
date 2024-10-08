@@ -1,4 +1,4 @@
-package pyrinstratum
+package waglaylastratum
 
 import (
 	"encoding/json"

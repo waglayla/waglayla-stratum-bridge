@@ -2094,8 +2094,8 @@
       {
         "current": {
           "selected": false,
-          "text": "pyrin:qzccsk5fwrh3c88460a0a99srnmhwf5gy49dk2e96935px29u5uks92guhf98",
-          "value": "pyrin:qzccsk5fwrh3c88460a0a99srnmhwf5gy49dk2e96935px29u5uks92guhf98"
+          "text": "waglayla:qzccsk5fwrh3c88460a0a99srnmhwf5gy49dk2e96935px29u5uks92guhf98",
+          "value": "waglayla:qzccsk5fwrh3c88460a0a99srnmhwf5gy49dk2e96935px29u5uks92guhf98"
         },
         "datasource": {
           "type": "prometheus",

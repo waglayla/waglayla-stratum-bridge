@@ -1,4 +1,4 @@
-package pyrinstratum
+package waglaylastratum
 
 import (
 	"context"
@@ -7,7 +7,7 @@ import (
 
 	"github.com/Pyrinpyi/pyipad/app/appmessage"
 	"github.com/Pyrinpyi/pyipad/infrastructure/network/rpcclient"
-	"github.com/Pyrinpyi/pyrin-stratum-bride/src/gostratum"
+	"github.com/Pyrinpyi/waglayla-stratum-bride/src/gostratum"
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
 )
@@ -16,7 +16,7 @@ type PyrinApi struct {
 	address       string
 	blockWaitTime time.Duration
 	logger        *zap.SugaredLogger
-	pyrin         *rpcclient.RPCClient
+	waglayla         *rpcclient.RPCClient
 	connected     bool
 }
 
@@ -29,8 +29,8 @@ func NewPyrinAPI(address string, blockWaitTime time.Duration, logger *zap.Sugare
 	return &PyrinApi{
 		address:       address,
 		blockWaitTime: blockWaitTime,
-		logger:        logger.With(zap.String("component", "pyrinapi:"+address)),
-		pyrin:         client,
+		logger:        logger.With(zap.String("component", "waglaylaapi:"+address)),
+		waglayla:         client,
 		connected:     true,
 	}, nil
 }
@@ -49,14 +49,14 @@ func (py *PyrinApi) startStatsThread(ctx context.Context) {
 			py.logger.Warn("context cancelled, stopping stats thread")
 			return
 		case <-ticker.C:
-			dagResponse, err := py.pyrin.GetBlockDAGInfo()
+			dagResponse, err := py.waglayla.GetBlockDAGInfo()
 			if err != nil {
-				py.logger.Warn("failed to get network hashrate from pyrin, prom stats will be out of date", zap.Error(err))
+				py.logger.Warn("failed to get network hashrate from waglayla, prom stats will be out of date", zap.Error(err))
 				continue
 			}
-			response, err := py.pyrin.EstimateNetworkHashesPerSecond(dagResponse.TipHashes[0], 1000)
+			response, err := py.waglayla.EstimateNetworkHashesPerSecond(dagResponse.TipHashes[0], 1000)
 			if err != nil {
-				py.logger.Warn("failed to get network hashrate from pyrin, prom stats will be out of date", zap.Error(err))
+				py.logger.Warn("failed to get network hashrate from waglayla, prom stats will be out of date", zap.Error(err))
 				continue
 			}
 			RecordNetworkStats(response.NetworkHashesPerSecond, dagResponse.BlockCount, dagResponse.Difficulty)
@@ -65,26 +65,26 @@ func (py *PyrinApi) startStatsThread(ctx context.Context) {
 }
 
 func (py *PyrinApi) reconnect() error {
-	if py.pyrin != nil {
-		return py.pyrin.Reconnect()
+	if py.waglayla != nil {
+		return py.waglayla.Reconnect()
 	}
 
 	client, err := rpcclient.NewRPCClient(py.address)
 	if err != nil {
 		return err
 	}
-	py.pyrin = client
+	py.waglayla = client
 	return nil
 }
 
 func (s *PyrinApi) waitForSync(verbose bool) error {
 	if verbose {
-		s.logger.Info("checking pyrin sync state")
+		s.logger.Info("checking waglayla sync state")
 	}
 	for {
-		clientInfo, err := s.pyrin.GetInfo()
+		clientInfo, err := s.waglayla.GetInfo()
 		if err != nil {
-			return errors.Wrapf(err, "error fetching server info from pyrin @ %s", s.address)
+			return errors.Wrapf(err, "error fetching server info from waglayla @ %s", s.address)
 		}
 		if clientInfo.IsSynced {
 			break
@@ -93,26 +93,26 @@ func (s *PyrinApi) waitForSync(verbose bool) error {
 		time.Sleep(5 * time.Second)
 	}
 	if verbose {
-		s.logger.Info("pyrin synced, starting server")
+		s.logger.Info("waglayla synced, starting server")
 	}
 	return nil
 }
 
 func (s *PyrinApi) startBlockTemplateListener(ctx context.Context, blockReadyCb func()) {
 	blockReadyChan := make(chan bool)
-	err := s.pyrin.RegisterForNewBlockTemplateNotifications(func(_ *appmessage.NewBlockTemplateNotificationMessage) {
+	err := s.waglayla.RegisterForNewBlockTemplateNotifications(func(_ *appmessage.NewBlockTemplateNotificationMessage) {
 		blockReadyChan <- true
 	})
 	if err != nil {
-		s.logger.Error("fatal: failed to register for block notifications from pyrin")
+		s.logger.Error("fatal: failed to register for block notifications from waglayla")
 	}
 
 	ticker := time.NewTicker(s.blockWaitTime)
 	for {
 		if err := s.waitForSync(false); err != nil {
-			s.logger.Error("error checking pyrin sync state, attempting reconnect: ", err)
+			s.logger.Error("error checking waglayla sync state, attempting reconnect: ", err)
 			if err := s.reconnect(); err != nil {
-				s.logger.Error("error reconnecting to pyrin, waiting before retry: ", err)
+				s.logger.Error("error reconnecting to waglayla, waiting before retry: ", err)
 				time.Sleep(5 * time.Second)
 			}
 		}
@@ -131,10 +131,10 @@ func (s *PyrinApi) startBlockTemplateListener(ctx context.Context, blockReadyCb 
 
 func (py *PyrinApi) GetBlockTemplate(
 	client *gostratum.StratumContext) (*appmessage.GetBlockTemplateResponseMessage, error) {
-	template, err := py.pyrin.GetBlockTemplate(client.WalletAddr,
-		fmt.Sprintf(`'%s' via Pyrinpyi/pyrin-stratum-bridge_%s`, client.RemoteApp, version))
+	template, err := py.waglayla.GetBlockTemplate(client.WalletAddr,
+		fmt.Sprintf(`'%s' via Pyrinpyi/waglayla-stratum-bridge_%s`, client.RemoteApp, version))
 	if err != nil {
-		return nil, errors.Wrap(err, "failed fetching new block template from pyrin")
+		return nil, errors.Wrap(err, "failed fetching new block template from waglayla")
 	}
 	return template, nil
 }

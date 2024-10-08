@@ -1,4 +1,4 @@
-package pyrinstratum
+package waglaylastratum
 
 import (
 	"bytes"
@@ -23,17 +23,17 @@ var (
 // Basically three different ways of representing difficulty, each used on
 // different occasions.  All 3 are updated when the stratum diff is set via
 // the setDiffValue method
-type pyrinDiff struct {
+type waglaylaDiff struct {
 	hashValue   float64  // previously known as shareValue
 	diffValue   float64  // previously known as fixedDifficulty
 	targetValue *big.Int // previously know as fixedDifficultyBI
 }
 
-func newPyrinDiff() *pyrinDiff {
-	return &pyrinDiff{}
+func newPyrinDiff() *waglaylaDiff {
+	return &waglaylaDiff{}
 }
 
-func (k *pyrinDiff) setDiffValue(diff float64) {
+func (k *waglaylaDiff) setDiffValue(diff float64) {
 	k.diffValue = diff
 	k.targetValue = DiffToTarget(diff)
 	k.hashValue = DiffToHash(diff)

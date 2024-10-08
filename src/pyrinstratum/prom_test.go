@@ -1,10 +1,10 @@
-package pyrinstratum
+package waglaylastratum
 
 import (
 	"testing"
 
 	"github.com/Pyrinpyi/pyipad/app/appmessage"
-	"github.com/Pyrinpyi/pyrin-stratum-bride/src/gostratum"
+	"github.com/Pyrinpyi/waglayla-stratum-bride/src/gostratum"
 )
 
 func TestPromValid(t *testing.T) {

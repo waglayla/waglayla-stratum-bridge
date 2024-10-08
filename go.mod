@@ -1,4 +1,4 @@
-module github.com/Pyrinpyi/pyrin-stratum-bride
+module github.com/Pyrinpyi/waglayla-stratum-bride
 
 go 1.18
 

@@ -1,4 +1,4 @@
-package pyrinstratum
+package waglaylastratum
 
 import (
 	"fmt"
@@ -14,7 +14,7 @@ import (
 	"github.com/Pyrinpyi/pyipad/domain/consensus/utils/consensushashing"
 	"github.com/Pyrinpyi/pyipad/domain/consensus/utils/pow"
 	"github.com/Pyrinpyi/pyipad/infrastructure/network/rpcclient"
-	"github.com/Pyrinpyi/pyrin-stratum-bride/src/gostratum"
+	"github.com/Pyrinpyi/waglayla-stratum-bride/src/gostratum"
 	"github.com/pkg/errors"
 	"go.uber.org/atomic"
 	"go.uber.org/zap"
@@ -32,16 +32,16 @@ type WorkStats struct {
 }
 
 type shareHandler struct {
-	pyrin        *rpcclient.RPCClient
+	waglayla        *rpcclient.RPCClient
 	stats        map[string]*WorkStats
 	statsLock    sync.Mutex
 	overall      WorkStats
 	tipBlueScore uint64
 }
 
-func newShareHandler(pyrin *rpcclient.RPCClient) *shareHandler {
+func newShareHandler(waglayla *rpcclient.RPCClient) *shareHandler {
 	return &shareHandler{
-		pyrin:     pyrin,
+		waglayla:     waglayla,
 		stats:     map[string]*WorkStats{},
 		statsLock: sync.Mutex{},
 	}
@@ -233,7 +233,7 @@ func (sh *shareHandler) submit(ctx *gostratum.StratumContext,
 		Header:       mutable.ToImmutable(),
 		Transactions: block.Transactions,
 	}
-	_, err := sh.pyrin.SubmitBlock(block)
+	_, err := sh.waglayla.SubmitBlock(block)
 	blockhash := consensushashing.BlockHash(block)
 	// print after the submit to get it submitted faster
 	ctx.Logger.Info(fmt.Sprintf("Submitted block %s", blockhash))

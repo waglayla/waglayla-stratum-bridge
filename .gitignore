@@ -2,7 +2,7 @@
 *~
 
 # Databases
-pyrin.db
+waglayla.db
 *-shm
 *-wal
 
@@ -26,6 +26,6 @@ debug.test
 __debug_bin
 .DS_Store
 
-cmd/pyrinbridge/pyrinbridge
-cmd/pyrinbridge/bridge.
+cmd/waglaylabridge/waglaylabridge
+cmd/waglaylabridge/bridge.
 release/

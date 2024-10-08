@@ -2,7 +2,7 @@ package main
 
 import (
 	"flag"
-	pyrinstratum "github.com/Pyrinpyi/pyrin-stratum-bride/src/pyrinstratum"
+	waglaylastratum "github.com/Pyrinpyi/waglayla-stratum-bride/src/waglaylastratum"
 	"io/ioutil"
 	"log"
 	"os"
@@ -21,7 +21,7 @@ func main() {
 		log.Printf("config file not found: %s", err)
 		os.Exit(1)
 	}
-	cfg := pyrinstratum.BridgeConfig{}
+	cfg := waglaylastratum.BridgeConfig{}
 	if err := yaml.Unmarshal(rawCfg, &cfg); err != nil {
 		log.Printf("failed parsing config file: %s", err)
 		os.Exit(1)
@@ -29,7 +29,7 @@ func main() {
 
 	flag.StringVar(&cfg.StratumPort, "stratum", cfg.StratumPort, "stratum port to listen on, default `:5555`")
 	flag.BoolVar(&cfg.PrintStats, "stats", cfg.PrintStats, "true to show periodic stats to console, default `true`")
-	flag.StringVar(&cfg.RPCServer, "pyrin", cfg.RPCServer, "address of the pyrin node, default `localhost:13110`")
+	flag.StringVar(&cfg.RPCServer, "waglayla", cfg.RPCServer, "address of the waglayla node, default `localhost:13110`")
 	flag.DurationVar(&cfg.BlockWaitTime, "blockwait", cfg.BlockWaitTime, "time in ms to wait before manually requesting new block, default `500`")
 	flag.UintVar(&cfg.MinShareDiff, "mindiff", cfg.MinShareDiff, "minimum share difficulty to accept from miner(s), default `4`")
 	flag.UintVar(&cfg.ExtranonceSize, "extranonce", cfg.ExtranonceSize, "size in bytes of extranonce, default `0`")
@@ -47,7 +47,7 @@ func main() {
 
 	log.Println("----------------------------------")
 	log.Printf("initializing bridge")
-	log.Printf("\tpyrin:          %s", cfg.RPCServer)
+	log.Printf("\twaglayla:          %s", cfg.RPCServer)
 	log.Printf("\tstratum:         %s", cfg.StratumPort)
 	log.Printf("\tprom:            %s", cfg.PromPort)
 	log.Printf("\tstats:           %t", cfg.PrintStats)
@@ -58,7 +58,7 @@ func main() {
 	log.Printf("\thealth check:    %s", cfg.HealthCheckPort)
 	log.Println("----------------------------------")
 
-	if err := pyrinstratum.ListenAndServe(cfg); err != nil {
+	if err := waglaylastratum.ListenAndServe(cfg); err != nil {
 		log.Println(err)
 	}
 }

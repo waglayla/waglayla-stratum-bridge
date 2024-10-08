@@ -1,4 +1,4 @@
-package pyrinstratum
+package waglaylastratum
 
 import (
 	"math/big"
@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/Pyrinpyi/pyipad/app/appmessage"
-	"github.com/Pyrinpyi/pyrin-stratum-bride/src/gostratum"
+	"github.com/Pyrinpyi/waglayla-stratum-bride/src/gostratum"
 )
 
 const maxjobs = 32
@@ -19,7 +19,7 @@ type MiningState struct {
 	initialized bool
 	useBigJob   bool
 	connectTime time.Time
-	stratumDiff *pyrinDiff
+	stratumDiff *waglaylaDiff
 }
 
 func MiningStateGenerator() any {

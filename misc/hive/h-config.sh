@@ -8,7 +8,7 @@ CONF=$CUSTOM_USER_CONFIG
 
 if [ -z "$var" ]
 then
-        CONF+=" -pyrin=$CUSTOM_URL"
+        CONF+=" -waglayla=$CUSTOM_URL"
 fi
 
 echo -e "$CONF" > $MINER_CONFIG
