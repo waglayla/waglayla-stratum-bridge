@@ -116,10 +116,10 @@ var testnetWalletRegex = regexp.MustCompile("waglaylatest:[a-z0-9]+")
 
 func CleanWallet(in string) (string, error) {
 	testnet := strings.HasPrefix(in, "waglaylatest:")
-	prefix := util.Bech32PrefixPyrin
+	prefix := util.Bech32PrefixWaglayla
 
 	if testnet {
-		prefix = util.Bech32PrefixPyrinTest
+		prefix = util.Bech32PrefixWaglaylaTest
 	}
 
 	_, err := util.DecodeAddress(in, prefix)

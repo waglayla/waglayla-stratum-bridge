@@ -12,7 +12,7 @@ import (
 	"go.uber.org/zap"
 )
 
-type PyrinApi struct {
+type WaglaylaApi struct {
 	address       string
 	blockWaitTime time.Duration
 	logger        *zap.SugaredLogger
@@ -20,13 +20,13 @@ type PyrinApi struct {
 	connected     bool
 }
 
-func NewPyrinAPI(address string, blockWaitTime time.Duration, logger *zap.SugaredLogger) (*PyrinApi, error) {
+func NewWaglaylaAPI(address string, blockWaitTime time.Duration, logger *zap.SugaredLogger) (*WaglaylaApi, error) {
 	client, err := rpcclient.NewRPCClient(address)
 	if err != nil {
 		return nil, err
 	}
 
-	return &PyrinApi{
+	return &WaglaylaApi{
 		address:       address,
 		blockWaitTime: blockWaitTime,
 		logger:        logger.With(zap.String("component", "waglaylaapi:"+address)),
@@ -35,13 +35,13 @@ func NewPyrinAPI(address string, blockWaitTime time.Duration, logger *zap.Sugare
 	}, nil
 }
 
-func (py *PyrinApi) Start(ctx context.Context, blockCb func()) {
+func (py *WaglaylaApi) Start(ctx context.Context, blockCb func()) {
 	py.waitForSync(true)
 	go py.startBlockTemplateListener(ctx, blockCb)
 	go py.startStatsThread(ctx)
 }
 
-func (py *PyrinApi) startStatsThread(ctx context.Context) {
+func (py *WaglaylaApi) startStatsThread(ctx context.Context) {
 	ticker := time.NewTicker(30 * time.Second)
 	for {
 		select {
@@ -64,7 +64,7 @@ func (py *PyrinApi) startStatsThread(ctx context.Context) {
 	}
 }
 
-func (py *PyrinApi) reconnect() error {
+func (py *WaglaylaApi) reconnect() error {
 	if py.waglayla != nil {
 		return py.waglayla.Reconnect()
 	}
@@ -77,7 +77,7 @@ func (py *PyrinApi) reconnect() error {
 	return nil
 }
 
-func (s *PyrinApi) waitForSync(verbose bool) error {
+func (s *WaglaylaApi) waitForSync(verbose bool) error {
 	if verbose {
 		s.logger.Info("checking waglayla sync state")
 	}
@@ -89,7 +89,7 @@ func (s *PyrinApi) waitForSync(verbose bool) error {
 		if clientInfo.IsSynced {
 			break
 		}
-		s.logger.Warn("Pyrin is not synced, waiting for sync before starting bridge")
+		s.logger.Warn("Waglayla is not synced, waiting for sync before starting bridge")
 		time.Sleep(5 * time.Second)
 	}
 	if verbose {
@@ -98,7 +98,7 @@ func (s *PyrinApi) waitForSync(verbose bool) error {
 	return nil
 }
 
-func (s *PyrinApi) startBlockTemplateListener(ctx context.Context, blockReadyCb func()) {
+func (s *WaglaylaApi) startBlockTemplateListener(ctx context.Context, blockReadyCb func()) {
 	blockReadyChan := make(chan bool)
 	err := s.waglayla.RegisterForNewBlockTemplateNotifications(func(_ *appmessage.NewBlockTemplateNotificationMessage) {
 		blockReadyChan <- true
@@ -129,7 +129,7 @@ func (s *PyrinApi) startBlockTemplateListener(ctx context.Context, blockReadyCb 
 	}
 }
 
-func (py *PyrinApi) GetBlockTemplate(
+func (py *WaglaylaApi) GetBlockTemplate(
 	client *gostratum.StratumContext) (*appmessage.GetBlockTemplateResponseMessage, error) {
 	template, err := py.waglayla.GetBlockTemplate(client.WalletAddr,
 		fmt.Sprintf(`'%s' via Waglayla/waglayla-stratum-bridge_%s`, client.RemoteApp, version))

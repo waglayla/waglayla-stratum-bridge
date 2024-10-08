@@ -1,4 +1,4 @@
-# Pyrin Stratum Adapter
+# Waglayla Stratum Adapter
 
 This is a [forked](https://github.com/waglayla/kaspa-stratum-bridge) lightweight daemon that allows mining to a local (or remote) waglayla node using stratum-base miners.
 
