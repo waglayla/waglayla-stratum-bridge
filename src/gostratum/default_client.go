@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/Pyrinpyi/pyipad/util"
+	"github.com/Waglayla/pyipad/util"
 	"github.com/mattn/go-colorable"
 	"github.com/pkg/errors"
 	"go.uber.org/zap"

@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/Pyrinpyi/waglayla-stratum-bride/src/gostratum"
+	"github.com/Waglayla/waglayla-stratum-bride/src/gostratum"
 	"github.com/mattn/go-colorable"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"

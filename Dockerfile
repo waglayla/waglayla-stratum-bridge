@@ -2,7 +2,7 @@ FROM golang:1.19.1 as builder
 
 LABEL org.opencontainers.image.description="Dockerized Pyrin Stratum Bridge"
 LABEL org.opencontainers.image.authors="waglayla,waglayla"
-LABEL org.opencontainers.image.source="https://github.com/Pyrinpyi/waglayla-stratum-bridge"
+LABEL org.opencontainers.image.source="https://github.com/Waglayla/waglayla-stratum-bridge"
 
 WORKDIR /go/src/app
 ADD go.mod .

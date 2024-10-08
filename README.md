@@ -24,7 +24,7 @@ Shares-based work allocation with miner-like periodic stat output:
 
 Optional monitoring UI:
 
-https://github.com/Pyrinpyi/waglayla-stratum-bridge/blob/main/monitoring-setup.md
+https://github.com/Waglayla/waglayla-stratum-bridge/blob/main/monitoring-setup.md
 
 ![image](https://user-images.githubusercontent.com/59971111/192025446-f20d74a5-f9e0-4290-b98b-9f56af8f23b4.png)
 

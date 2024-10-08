@@ -1,9 +1,9 @@
-module github.com/Pyrinpyi/waglayla-stratum-bride
+module github.com/Waglayla/waglayla-stratum-bride
 
 go 1.18
 
 require (
-	github.com/Pyrinpyi/pyipad v1.1.0
+	github.com/Waglayla/pyipad v1.1.0
 	github.com/google/go-cmp v0.5.9
 	github.com/google/uuid v1.3.1
 	github.com/mattn/go-colorable v0.1.13

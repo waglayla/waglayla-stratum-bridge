@@ -2,7 +2,7 @@ package main
 
 import (
 	"flag"
-	waglaylastratum "github.com/Pyrinpyi/waglayla-stratum-bride/src/waglaylastratum"
+	waglaylastratum "github.com/Waglayla/waglayla-stratum-bride/src/waglaylastratum"
 	"io/ioutil"
 	"log"
 	"os"

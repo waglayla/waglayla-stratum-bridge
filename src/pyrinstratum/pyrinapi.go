@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Pyrinpyi/pyipad/app/appmessage"
-	"github.com/Pyrinpyi/pyipad/infrastructure/network/rpcclient"
-	"github.com/Pyrinpyi/waglayla-stratum-bride/src/gostratum"
+	"github.com/Waglayla/pyipad/app/appmessage"
+	"github.com/Waglayla/pyipad/infrastructure/network/rpcclient"
+	"github.com/Waglayla/waglayla-stratum-bride/src/gostratum"
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
 )
@@ -132,7 +132,7 @@ func (s *PyrinApi) startBlockTemplateListener(ctx context.Context, blockReadyCb 
 func (py *PyrinApi) GetBlockTemplate(
 	client *gostratum.StratumContext) (*appmessage.GetBlockTemplateResponseMessage, error) {
 	template, err := py.waglayla.GetBlockTemplate(client.WalletAddr,
-		fmt.Sprintf(`'%s' via Pyrinpyi/waglayla-stratum-bridge_%s`, client.RemoteApp, version))
+		fmt.Sprintf(`'%s' via Waglayla/waglayla-stratum-bridge_%s`, client.RemoteApp, version))
 	if err != nil {
 		return nil, errors.Wrap(err, "failed fetching new block template from waglayla")
 	}

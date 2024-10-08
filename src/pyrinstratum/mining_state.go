@@ -5,8 +5,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Pyrinpyi/pyipad/app/appmessage"
-	"github.com/Pyrinpyi/waglayla-stratum-bride/src/gostratum"
+	"github.com/Waglayla/pyipad/app/appmessage"
+	"github.com/Waglayla/waglayla-stratum-bride/src/gostratum"
 )
 
 const maxjobs = 32
