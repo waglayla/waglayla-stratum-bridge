@@ -3,8 +3,8 @@ package waglaylastratum
 import (
 	"testing"
 
-	"github.com/Waglayla/waglayla/app/appmessage"
-	"github.com/Waglayla/waglayla-stratum-bride/src/gostratum"
+	"github.com/waglayla/waglaylad/app/appmessage"
+	"github.com/waglayla/waglayla-stratum-bride/src/gostratum"
 )
 
 func TestPromValid(t *testing.T) {
