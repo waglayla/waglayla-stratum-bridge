@@ -29,7 +29,7 @@ type waglaylaDiff struct {
 	targetValue *big.Int // previously know as fixedDifficultyBI
 }
 
-func newWaglaylaDiff() *waglaylaDiff {
+func newwaglaylaDiff() *waglaylaDiff {
 	return &waglaylaDiff{}
 }
 
