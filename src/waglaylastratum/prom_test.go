@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/waglayla/waglaylad/app/appmessage"
-	"github.com/waglayla/waglayla-stratum-bride/src/gostratum"
+	"github.com/waglayla/waglayla-stratum-bridge/src/gostratum"
 )
 
 func TestPromValid(t *testing.T) {
