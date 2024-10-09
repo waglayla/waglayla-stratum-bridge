@@ -19,7 +19,7 @@ services:
       - host.docker.internal:host-gateway
   grafana:
     image: grafana/grafana-oss:latest
-    container_name: py_grafana
+    container_name: wala_grafana
     restart: unless-stopped
     user: "0"
     volumes:
