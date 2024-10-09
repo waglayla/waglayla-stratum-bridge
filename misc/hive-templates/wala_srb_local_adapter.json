@@ -2,29 +2,29 @@
     "isFavorite": false,
     "items": [
         {
-            "coin": "PYI",
+            "coin": "WALA",
             "pool_ssl": false,
             "dpool_ssl": false,
-            "miner": "lolminer",
+            "miner": "srbminer",
             "miner_config": {
                 "url": "127.0.0.1:5555",
-                "algo": "PYRIN",
+                "algo": "waglayla",
                 "worker": "%WORKER_NAME%",
                 "user_config": "--disable-cpu"
             },
             "pool_geo": []
         },
         {
-            "coin": "PYI",
+            "coin": "WALA",
             "pool_ssl": false,
             "dpool_ssl": false,
             "miner": "custom",
-            "miner_alt": "py_bridge",
+            "miner_alt": "wala_bridge",
             "miner_config": {
-                "url": "YOUR_PYIPAD_NODE_IP_HERE:13110",
-                "miner": "py_bridge",
+                "url": "YOUR_WAGLAYLAD_NODE_IP_HERE:12210",
+                "miner": "wala_bridge",
                 "template": "doesnt.matter",
-                "install_url": "https://github.com/Waglayla/waglayla-stratum-bridge/releases/download/v0.13.4/py_bridge-0.13.4_hive.tar.gz"
+                "install_url": "https://github.com/waglayla/waglayla-stratum-bridge/releases/download/v1.1.2/wala_bridge-1.1.2_hive.tar.gz"
             },
             "pool_geo": []
         }
