@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Waglayla/waglayla/app/appmessage"
-	"github.com/Waglayla/waglayla/infrastructure/network/rpcclient"
-	"github.com/Waglayla/waglayla-stratum-bride/src/gostratum"
+	"github.com/waglayla/waglaylad/app/appmessage"
+	"github.com/waglayla/waglaylad/infrastructure/network/rpcclient"
+	"github.com/waglayla/waglayla-stratum-bride/src/gostratum"
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
 )
