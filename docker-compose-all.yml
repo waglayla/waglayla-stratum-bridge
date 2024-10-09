@@ -1,7 +1,7 @@
 volumes:
   prometheus_data: {}
 services:
-  py_bridge:
+  wala_bridge:
     image: waglayla/waglayla-stratum-bridge:latest
     container_name: wala_bridge
     restart: unless-stopped
