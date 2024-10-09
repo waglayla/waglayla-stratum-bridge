@@ -89,7 +89,7 @@ func (s *waglaylaApi) waitForSync(verbose bool) error {
 		if clientInfo.IsSynced {
 			break
 		}
-		s.logger.Warn("Waglayla is not synced, waiting for sync before starting bridge")
+		s.logger.Warn("WagLayla is not synced, waiting for sync before starting bridge")
 		time.Sleep(5 * time.Second)
 	}
 	if verbose {
