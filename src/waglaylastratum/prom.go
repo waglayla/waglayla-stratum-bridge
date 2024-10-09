@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/Waglayla/waglayla/app/appmessage"
-	"github.com/Waglayla/waglayla-stratum-bride/src/gostratum"
+	"github.com/waglayla/waglaylad/app/appmessage"
+	"github.com/waglayla/waglayla-stratum-bride/src/gostratum"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
