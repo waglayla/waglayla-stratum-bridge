@@ -83,7 +83,7 @@ func (c *clientListener) OnDisconnect(ctx *gostratum.StratumContext) {
 	RecordDisconnect(ctx)
 }
 
-func (c *clientListener) NewBlockAvailable(kapi *WaglaylaApi) {
+func (c *clientListener) NewBlockAvailable(kapi *waglaylaApi) {
 	c.clientLock.Lock()
 	addresses := make([]string, 0, len(c.clients))
 	for _, cl := range c.clients {
@@ -126,7 +126,7 @@ func (c *clientListener) NewBlockAvailable(kapi *WaglaylaApi) {
 				state.initialized = true
 				state.useBigJob = bigJobRegex.MatchString(client.RemoteApp)
 				// first pass through send the difficulty since it's fixed
-				state.stratumDiff = newWaglaylaDiff()
+				state.stratumDiff = newwaglaylaDiff()
 				state.stratumDiff.setDiffValue(c.minShareDiff)
 				if err := client.Send(gostratum.JsonRpcEvent{
 					Version: "2.0",
