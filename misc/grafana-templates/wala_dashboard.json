@@ -256,9 +256,9 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "increase(py_balance_by_wallet_gauge{wallet=~\"${wallet_filter}\"}[${resolution}]) *  ${show_balances}",
+          "expr": "increase(wala_balance_by_wallet_gauge{wallet=~\"${wallet_filter}\"}[${resolution}]) *  ${show_balances}",
           "instant": false,
-          "legendFormat": "PYI",
+          "legendFormat": "WALA",
           "range": true,
           "refId": "A"
         }
@@ -325,7 +325,7 @@
           },
           "editorMode": "code",
           "expr": "SUM (py_balance_by_wallet_gauge{wallet=~\"${wallet_filter}\"}) * ${show_balances}",
-          "legendFormat": "PYI",
+          "legendFormat": "WALA",
           "range": true,
           "refId": "A"
         }
