@@ -3,9 +3,9 @@ rm -rf release
 mkdir -p release
 cd release
 VERSION=0.14.5
-ARCHIVE="py_bridge-${VERSION}"
-OUTFILE="py_bridge"
-OUTDIR="py_bridge"
+ARCHIVE="wala_bridge-${VERSION}"
+OUTFILE="wala_bridge"
+OUTDIR="wala_bridge"
 
 # windows
 mkdir -p ${OUTDIR};env GOOS=windows GOARCH=amd64 go build -o ${OUTDIR}/${OUTFILE}.exe ${CMD_PATH};cp ${CMD_PATH}/config.yaml ${OUTDIR}/
