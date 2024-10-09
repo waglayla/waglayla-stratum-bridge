@@ -20,7 +20,7 @@ type waglaylaApi struct {
 	connected     bool
 }
 
-func NewwaglaylaAPI(address string, blockWaitTime time.Duration, logger *zap.SugaredLogger) (*WaglaylaApi, error) {
+func NewwaglaylaAPI(address string, blockWaitTime time.Duration, logger *zap.SugaredLogger) (*waglaylaApi, error) {
 	client, err := rpcclient.NewRPCClient(address)
 	if err != nil {
 		return nil, err
