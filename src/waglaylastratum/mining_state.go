@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/waglayla/waglaylad/app/appmessage"
-	"github.com/waglayla/waglayla-stratum-bride/src/gostratum"
+	"github.com/waglayla/waglayla-stratum-bridge/src/gostratum"
 )
 
 const maxjobs = 32
