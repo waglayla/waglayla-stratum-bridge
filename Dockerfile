@@ -1,8 +1,8 @@
 FROM golang:1.19.1 as builder
 
 LABEL org.opencontainers.image.description="Dockerized Waglayla Stratum Bridge"
-LABEL org.opencontainers.image.authors="waglayla,waglayla"
-LABEL org.opencontainers.image.source="https://github.com/Waglayla/waglayla-stratum-bridge"
+LABEL org.opencontainers.image.authors="waglayla"
+LABEL org.opencontainers.image.source="https://github.com/waglayla/waglayla-stratum-bridge"
 
 WORKDIR /go/src/app
 ADD go.mod .
