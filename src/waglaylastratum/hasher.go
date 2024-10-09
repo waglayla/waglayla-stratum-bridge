@@ -10,7 +10,7 @@ import (
 	"lukechampine.com/blake3"
 	"math/big"
 
-	"github.com/Waglayla/waglayla/app/appmessage"
+	"github.com/waglayla/waglaylad/app/appmessage"
 )
 
 // static value definitions to avoid overhead in diff translations
