@@ -1,4 +1,4 @@
-module github.com/Waglayla/waglayla-stratum-bridge
+module github.com/waglayla/waglayla-stratum-bridge
 
 go 1.18
 
