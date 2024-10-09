@@ -14,7 +14,7 @@ import (
 	"github.com/waglayla/waglaylad/domain/consensus/utils/consensushashing"
 	"github.com/waglayla/waglaylad/domain/consensus/utils/pow"
 	"github.com/waglayla/waglaylad/infrastructure/network/rpcclient"
-	"github.com/waglayla/waglayla-stratum-bride/src/gostratum"
+	"github.com/waglayla/waglayla-stratum-bridge/src/gostratum"
 	"github.com/pkg/errors"
 	"go.uber.org/atomic"
 	"go.uber.org/zap"
