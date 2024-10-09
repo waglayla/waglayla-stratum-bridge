@@ -9,7 +9,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/Waglayla/waglayla-stratum-bride/src/gostratum"
+	"github.com/waglayla/waglayla-stratum-bride/src/gostratum"
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
 )
