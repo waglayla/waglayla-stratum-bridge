@@ -5,8 +5,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Waglayla/waglayla/app/appmessage"
-	"github.com/Waglayla/waglayla-stratum-bride/src/gostratum"
+	"github.com/waglayla/waglaylad/app/appmessage"
+	"github.com/waglayla/waglayla-stratum-bride/src/gostratum"
 )
 
 const maxjobs = 32
