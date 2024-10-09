@@ -63,7 +63,7 @@ func ListenAndServe(cfg BridgeConfig) error {
 	if blockWaitTime < minBlockWaitTime {
 		blockWaitTime = minBlockWaitTime
 	}
-	pyApi, err := NewWaglaylaAPI(cfg.RPCServer, blockWaitTime, logger)
+	pyApi, err := NewwaglaylaAPI(cfg.RPCServer, blockWaitTime, logger)
 	if err != nil {
 		return err
 	}
