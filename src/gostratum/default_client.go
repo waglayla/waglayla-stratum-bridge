@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/Waglayla/waglayla/util"
+	"github.com/waglayla/waglaylad/util"
 	"github.com/mattn/go-colorable"
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
@@ -132,11 +132,11 @@ func CleanWallet(in string) (string, error) {
 
 	// has waglayla: prefix but other weirdness somewhere
 	if walletRegex.MatchString(in) {
-		return in[0:67], nil
+		return in[0:70], nil
 	}
 
 	if testnetWalletRegex.MatchString(in) {
-		return in[0:71], nil
+		return in[0:74], nil
 	}
 
 	return "", errors.New("unable to coerce wallet to valid waglayla address")
