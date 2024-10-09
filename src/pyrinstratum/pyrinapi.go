@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Waglayla/pyipad/app/appmessage"
-	"github.com/Waglayla/pyipad/infrastructure/network/rpcclient"
+	"github.com/Waglayla/waglayla/app/appmessage"
+	"github.com/Waglayla/waglayla/infrastructure/network/rpcclient"
 	"github.com/Waglayla/waglayla-stratum-bride/src/gostratum"
 	"github.com/pkg/errors"
 	"go.uber.org/zap"

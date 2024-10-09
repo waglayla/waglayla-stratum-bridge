@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Waglayla/pyipad/app/appmessage"
+	"github.com/Waglayla/waglayla/app/appmessage"
 	"github.com/Waglayla/waglayla-stratum-bride/src/gostratum"
 )
 

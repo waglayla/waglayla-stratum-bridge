@@ -2,7 +2,7 @@ volumes:
   prometheus_data: {}
 services:
   py_bridge:
-    image: waglaylapyi/pyipad-stratum-bridge:latest
+    image: waglaylapyi/waglayla-stratum-bridge:latest
     container_name: py_bridge
     restart: unless-stopped
     user: "0"
