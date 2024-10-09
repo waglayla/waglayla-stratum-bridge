@@ -12,7 +12,7 @@ import (
 	"go.uber.org/zap"
 )
 
-type WaglaylaApi struct {
+type waglaylaApi struct {
 	address       string
 	blockWaitTime time.Duration
 	logger        *zap.SugaredLogger
