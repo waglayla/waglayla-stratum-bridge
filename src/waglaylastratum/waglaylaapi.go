@@ -20,13 +20,13 @@ type waglaylaApi struct {
 	connected     bool
 }
 
-func NewWaglaylaAPI(address string, blockWaitTime time.Duration, logger *zap.SugaredLogger) (*WaglaylaApi, error) {
+func NewwaglaylaAPI(address string, blockWaitTime time.Duration, logger *zap.SugaredLogger) (*WaglaylaApi, error) {
 	client, err := rpcclient.NewRPCClient(address)
 	if err != nil {
 		return nil, err
 	}
 
-	return &WaglaylaApi{
+	return &waglaylaApi{
 		address:       address,
 		blockWaitTime: blockWaitTime,
 		logger:        logger.With(zap.String("component", "waglaylaapi:"+address)),
@@ -35,13 +35,13 @@ func NewWaglaylaAPI(address string, blockWaitTime time.Duration, logger *zap.Sug
 	}, nil
 }
 
-func (py *WaglaylaApi) Start(ctx context.Context, blockCb func()) {
+func (py *waglaylaApi) Start(ctx context.Context, blockCb func()) {
 	py.waitForSync(true)
 	go py.startBlockTemplateListener(ctx, blockCb)
 	go py.startStatsThread(ctx)
 }
 
-func (py *WaglaylaApi) startStatsThread(ctx context.Context) {
+func (py *waglaylaApi) startStatsThread(ctx context.Context) {
 	ticker := time.NewTicker(30 * time.Second)
 	for {
 		select {
@@ -64,7 +64,7 @@ func (py *WaglaylaApi) startStatsThread(ctx context.Context) {
 	}
 }
 
-func (py *WaglaylaApi) reconnect() error {
+func (py *waglaylaApi) reconnect() error {
 	if py.waglayla != nil {
 		return py.waglayla.Reconnect()
 	}
@@ -77,7 +77,7 @@ func (py *WaglaylaApi) reconnect() error {
 	return nil
 }
 
-func (s *WaglaylaApi) waitForSync(verbose bool) error {
+func (s *waglaylaApi) waitForSync(verbose bool) error {
 	if verbose {
 		s.logger.Info("checking waglayla sync state")
 	}
@@ -98,7 +98,7 @@ func (s *WaglaylaApi) waitForSync(verbose bool) error {
 	return nil
 }
 
-func (s *WaglaylaApi) startBlockTemplateListener(ctx context.Context, blockReadyCb func()) {
+func (s *waglaylaApi) startBlockTemplateListener(ctx context.Context, blockReadyCb func()) {
 	blockReadyChan := make(chan bool)
 	err := s.waglayla.RegisterForNewBlockTemplateNotifications(func(_ *appmessage.NewBlockTemplateNotificationMessage) {
 		blockReadyChan <- true
@@ -129,7 +129,7 @@ func (s *WaglaylaApi) startBlockTemplateListener(ctx context.Context, blockReady
 	}
 }
 
-func (py *WaglaylaApi) GetBlockTemplate(
+func (py *waglaylaApi) GetBlockTemplate(
 	client *gostratum.StratumContext) (*appmessage.GetBlockTemplateResponseMessage, error) {
 	template, err := py.waglayla.GetBlockTemplate(client.WalletAddr,
 		fmt.Sprintf(`'%s' via Waglayla/waglayla-stratum-bridge_%s`, client.RemoteApp, version))
