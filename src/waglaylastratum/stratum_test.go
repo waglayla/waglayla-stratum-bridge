@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Waglayla/waglayla/app/appmessage"
-	"github.com/Waglayla/waglayla/util/difficulty"
+	"github.com/waglayla/waglaylad/app/appmessage"
+	"github.com/waglayla/waglaylad/util/difficulty"
 	"github.com/google/go-cmp/cmp"
 )
 
