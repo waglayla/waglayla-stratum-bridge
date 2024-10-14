@@ -21,7 +21,7 @@
             "miner": "custom",
             "miner_alt": "wala_bridge",
             "miner_config": {
-                "url": "YOUR_WAGLAYLAD_NODE_IP_HERE:12210",
+                "url": "YOUR_WAGLAYLAD_NODE_IP_HERE:12110",
                 "miner": "wala_bridge",
                 "template": "doesnt.matter",
                 "install_url": "https://github.com/waglayla/waglayla-stratum-bridge/releases/download/v1.1.2/wala_bridge-1.1.2_hive.tar.gz"
