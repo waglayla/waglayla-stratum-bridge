@@ -5,7 +5,7 @@ stratum_port: :5555
 # waglayla_address: address/port of the rpc server for waglayla, typically 13110
 # For a list of public nodes, run `nslookup mainnet-dnsseed.daglabs-dev.com`
 # uncomment for to use a public node
-waglayla_address: localhost:12210
+waglayla_address: localhost:12110
 
 # min_share_diff: only accept shares of the specified difficulty (or higher) from
 # the miner(s).  Higher values will reduce the number of shares submitted, thereby
