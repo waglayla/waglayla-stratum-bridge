@@ -2,7 +2,7 @@ CMD_PATH="../cmd/waglaylabridge"
 rm -rf release
 mkdir -p release
 cd release
-VERSION=0.14.6
+VERSION=1.1.7
 ARCHIVE="wala_bridge-${VERSION}"
 OUTFILE="wala_bridge"
 OUTDIR="wala_bridge"
