@@ -3,12 +3,12 @@ module github.com/waglayla/waglayla-stratum-bridge
 go 1.18
 
 require (
-	github.com/waglayla/waglaylad v0.14.5
 	github.com/google/go-cmp v0.5.9
 	github.com/google/uuid v1.3.1
 	github.com/mattn/go-colorable v0.1.13
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_golang v1.13.0
+	github.com/waglayla/waglaylad v0.14.5
 	go.uber.org/atomic v1.7.0
 	go.uber.org/zap v1.23.0
 	gopkg.in/yaml.v2 v2.4.0
