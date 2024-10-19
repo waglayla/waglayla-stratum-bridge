@@ -58,6 +58,8 @@ func main() {
 		cfg.BlockWaitTime = 5 * time.Second // this should never happen due to waglayla 1s block times
 	}
 
+	cfg.SoloMining = true; // temporary for WALA only
+
 	log.Println("----------------------------------")
 	log.Printf("initializing bridge")
 	log.Printf("\twaglayla:          %s", cfg.RPCServer)

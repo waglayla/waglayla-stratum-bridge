@@ -82,8 +82,8 @@ func ListenAndServe(cfg BridgeConfig) error {
 
 	shareHandler := newShareHandler(pyApi.waglayla)
 	minDiff := cfg.MinShareDiff
-	if minDiff < 1 {
-		minDiff = 1
+	if minDiff < 0.0001 {
+		minDiff = 0.0001
 	}
 	extranonceSize := cfg.ExtranonceSize
 	if extranonceSize > 3 {

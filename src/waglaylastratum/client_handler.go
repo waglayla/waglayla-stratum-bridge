@@ -161,6 +161,8 @@ func (c *clientListener) NewBlockAvailable(kapi *waglaylaApi, soloMining bool) {
 				jobParams = append(jobParams, uint64(template.Block.Header.Timestamp))
 			}
 
+			// client.Logger.Info(fmt.Sprintf("Sending blob: %s\n", GenerateLargeJobParams(header, uint64(template.Block.Header.Timestamp))))
+
 			// // normal notify flow
 			if err := client.Send(gostratum.JsonRpcEvent{
 				Version: "2.0",

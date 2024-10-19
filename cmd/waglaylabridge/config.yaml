@@ -21,7 +21,7 @@ waglayla_address: localhost:12110
 # don't want to change the default to match your device(s), the vardiff engine
 # will adjust to an appropriate diff for lower hashrate devices within a few
 # minutes.
-min_share_diff: 1
+min_share_diff: 0.01
 
 # var_diff: if true, enables the auto-adjusting variable share diff mechanism.
 # Starts with the value defined by the 'min_share_diff' setting, then checks
@@ -52,7 +52,7 @@ solo_mining: false
 
 # block_wait_time: time to wait since last new block message from spectred before
 # manually requesting a new block. Examples are '500ms', '3s', '1m', etc.
-block_wait_time: 250ms
+block_wait_time: 50ms
 
 # extranonce_size: size in bytes of extranonce, from 0 (no extranonce) to 3.
 # With no extranonce (0), all clients will search through the same nonce-space,
