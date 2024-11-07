@@ -13,7 +13,7 @@ import (
 	"github.com/waglayla/waglaylad/app/appmessage"
 	"github.com/waglayla/waglaylad/domain/consensus/model/externalapi"
 	"github.com/waglayla/waglaylad/domain/consensus/utils/consensushashing"
-	// "github.com/waglayla/waglaylad/domain/consensus/utils/pow"
+	"github.com/waglayla/waglaylad/domain/consensus/utils/pow"
 	"github.com/waglayla/waglaylad/infrastructure/network/rpcclient"
 	"github.com/waglayla/waglayla-stratum-bridge/src/gostratum"
 	"github.com/pkg/errors"
@@ -213,51 +213,49 @@ func (sh *shareHandler) HandleSubmit(ctx *gostratum.StratumContext, event gostra
 	mutableHeader := converted.Header.ToMutable()
 	mutableHeader.SetNonce(submitInfo.nonceVal)
 
-	// powState := pow.NewState(mutableHeader)
-	// powValue := powState.CalculateProofOfWorkValue()
+	powState := pow.NewState(mutableHeader)
+	powValue := powState.CalculateProofOfWorkValue()
 
 	// The block hash must be less or equal than the claimed target.
-	// if powValue.Cmp(&powState.Target) <= 0 {
+	if powValue.Cmp(&powState.Target) <= 0 {
 		if err := sh.submit(ctx, converted, submitInfo.nonceVal, event.Id); err != nil {
 			return err
 		}
-	// } 
-	
-	// else if powValue.Cmp(state.stratumDiff.targetValue) >= 0 {
-	// 	if soloMining {
-	// 		ctx.Logger.Warn("weak block")
-	// 	} else {
-	// 		ctx.Logger.Warn("weak share")
-	// 	}
+	} else if powValue.Cmp(state.stratumDiff.targetValue) >= 0 {
+		if soloMining {
+			ctx.Logger.Warn("weak block")
+		} else {
+			ctx.Logger.Warn("weak share")
+		}
 
-	// 	prePowHashHex := strings.Repeat("00", 32) // 32 bytes of zero
+		// prePowHashHex := strings.Repeat("00", 32) // 32 bytes of zero
 
-	// 	zeroes := strings.Repeat("00", 32) // 32 bytes of zero
+		// zeroes := strings.Repeat("00", 32) // 32 bytes of zero
 
-	// 	ctx.Logger.Warn(fmt.Sprintf("Net Target: %s\n", powState.Target.String()))
-	// 	ctx.Logger.Warn(fmt.Sprintf("Stratum Target: %s\n", state.stratumDiff.targetValue.String()))
-	// 	ctx.Logger.Warn(fmt.Sprintf("Stratum Target Hex: %064x\n", state.stratumDiff.targetValue.Bytes()))
-	// 	ctx.Logger.Warn(fmt.Sprintf("Blob: %s%016x%s%016x", prePowHashHex, powState.Timestamp, zeroes, powState.Nonce))
-	// 	ctx.Logger.Warn(fmt.Sprintf("Nonce: %d\n", submitInfo.nonceVal))
-	// 	ctx.Logger.Warn(fmt.Sprintf("Nonce Hex: %016x\n", submitInfo.nonceVal))
-	// 	ctx.Logger.Warn(fmt.Sprintf("PowValue: %064x\n", powValue.Bytes()))
-	// 	stats.InvalidShares.Add(1)
-	// 	sh.overall.InvalidShares.Add(1)
-	// 	RecordWeakShare(ctx)
-	// 	return ctx.ReplyLowDiffShare(event.Id)
-	// }
+		// ctx.Logger.Warn(fmt.Sprintf("Net Target: %s\n", powState.Target.String()))
+		// ctx.Logger.Warn(fmt.Sprintf("Stratum Target: %s\n", state.stratumDiff.targetValue.String()))
+		// ctx.Logger.Warn(fmt.Sprintf("Stratum Target Hex: %064x\n", state.stratumDiff.targetValue.Bytes()))
+		// ctx.Logger.Warn(fmt.Sprintf("Blob: %s%016x%s%016x", prePowHashHex, powState.Timestamp, zeroes, powState.Nonce))
+		// ctx.Logger.Warn(fmt.Sprintf("Nonce: %d\n", submitInfo.nonceVal))
+		// ctx.Logger.Warn(fmt.Sprintf("Nonce Hex: %016x\n", submitInfo.nonceVal))
+		// ctx.Logger.Warn(fmt.Sprintf("PowValue: %064x\n", powValue.Bytes()))
+		stats.InvalidShares.Add(1)
+		sh.overall.InvalidShares.Add(1)
+		RecordWeakShare(ctx)
+		return ctx.ReplyLowDiffShare(event.Id)
+	}
 
-	// stats.SharesFound.Add(1)
-	// stats.VarDiffSharesFound.Add(1)
-	// stats.SharesDiff.Add(state.stratumDiff.hashValue)
-	// stats.LastShare = time.Now()
-	// sh.overall.SharesFound.Add(1)
-	// RecordShareFound(ctx, state.stratumDiff.hashValue)
+	stats.SharesFound.Add(1)
+	stats.VarDiffSharesFound.Add(1)
+	stats.SharesDiff.Add(state.stratumDiff.hashValue)
+	stats.LastShare = time.Now()
+	sh.overall.SharesFound.Add(1)
+	RecordShareFound(ctx, state.stratumDiff.hashValue)
 
-	// return ctx.Reply(gostratum.JsonRpcResponse{
-	// 	Id:     event.Id,
-	// 	Result: true,
-	// })
+	return ctx.Reply(gostratum.JsonRpcResponse{
+		Id:     event.Id,
+		Result: true,
+	})
 
 	return nil
 }
