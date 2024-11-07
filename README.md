@@ -3,8 +3,7 @@
 This is a [forked](https://github.com/waglayla/waglayla-stratum-bridge) lightweight daemon that allows mining to a local (or remote) waglayla node using stratum-base miners.
 
 This daemon is confirmed working with the miners below in both dual-mining and waglayla-only modes (for those that support it) and Windows/MacOs/Linux/HiveOs.
-* [lolminer](https://github.com/Lolliedieb/lolMiner-releases/releases/tag/1.81)
-* [srbminer](https://github.com/doktor83/SRBMiner-Multi/releases/tag/2.4.4)
+* [srbminer](https://github.com/doktor83/SRBMiner-Multi/releases/tag/2.6.9)
 
 
 ## Hive Setup
